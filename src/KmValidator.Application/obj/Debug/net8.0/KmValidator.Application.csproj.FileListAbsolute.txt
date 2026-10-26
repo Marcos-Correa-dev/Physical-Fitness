@@ -1,0 +1,15 @@
+C:\Users\marcos.correa\projects\ps-projects\agy-cli-projects\backend\src\KmValidator.Application\bin\Debug\net8.0\KmValidator.Application.deps.json
+C:\Users\marcos.correa\projects\ps-projects\agy-cli-projects\backend\src\KmValidator.Application\bin\Debug\net8.0\KmValidator.Application.dll
+C:\Users\marcos.correa\projects\ps-projects\agy-cli-projects\backend\src\KmValidator.Application\bin\Debug\net8.0\KmValidator.Application.pdb
+C:\Users\marcos.correa\projects\ps-projects\agy-cli-projects\backend\src\KmValidator.Application\bin\Debug\net8.0\KmValidator.Domain.dll
+C:\Users\marcos.correa\projects\ps-projects\agy-cli-projects\backend\src\KmValidator.Application\bin\Debug\net8.0\KmValidator.Domain.pdb
+C:\Users\marcos.correa\projects\ps-projects\agy-cli-projects\backend\src\KmValidator.Application\obj\Debug\net8.0\KmValidator.Application.csproj.AssemblyReference.cache
+C:\Users\marcos.correa\projects\ps-projects\agy-cli-projects\backend\src\KmValidator.Application\obj\Debug\net8.0\KmValidator.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\marcos.correa\projects\ps-projects\agy-cli-projects\backend\src\KmValidator.Application\obj\Debug\net8.0\KmValidator.Application.AssemblyInfoInputs.cache
+C:\Users\marcos.correa\projects\ps-projects\agy-cli-projects\backend\src\KmValidator.Application\obj\Debug\net8.0\KmValidator.Application.AssemblyInfo.cs
+C:\Users\marcos.correa\projects\ps-projects\agy-cli-projects\backend\src\KmValidator.Application\obj\Debug\net8.0\KmValidator.Application.csproj.CoreCompileInputs.cache
+C:\Users\marcos.correa\projects\ps-projects\agy-cli-projects\backend\src\KmValidator.Application\obj\Debug\net8.0\KmValida.DC43B339.Up2Date
+C:\Users\marcos.correa\projects\ps-projects\agy-cli-projects\backend\src\KmValidator.Application\obj\Debug\net8.0\KmValidator.Application.dll
+C:\Users\marcos.correa\projects\ps-projects\agy-cli-projects\backend\src\KmValidator.Application\obj\Debug\net8.0\refint\KmValidator.Application.dll
+C:\Users\marcos.correa\projects\ps-projects\agy-cli-projects\backend\src\KmValidator.Application\obj\Debug\net8.0\KmValidator.Application.pdb
+C:\Users\marcos.correa\projects\ps-projects\agy-cli-projects\backend\src\KmValidator.Application\obj\Debug\net8.0\ref\KmValidator.Application.dll

@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "GHsF9Qd9FfuRPX+K4gAj8B57EpmcftI8vvjMW3FTklg=",
+  "Source": "KmValidator.Api",
+  "BasePath": "_content/KmValidator.Api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

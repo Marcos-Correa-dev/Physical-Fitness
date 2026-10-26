@@ -1,0 +1,17 @@
+C:\Users\marcos.correa\projects\ps-projects\agy-cli-projects\backend\src\KmValidator.Infrastructure\bin\Debug\net8.0\KmValidator.Infrastructure.deps.json
+C:\Users\marcos.correa\projects\ps-projects\agy-cli-projects\backend\src\KmValidator.Infrastructure\bin\Debug\net8.0\KmValidator.Infrastructure.dll
+C:\Users\marcos.correa\projects\ps-projects\agy-cli-projects\backend\src\KmValidator.Infrastructure\bin\Debug\net8.0\KmValidator.Infrastructure.pdb
+C:\Users\marcos.correa\projects\ps-projects\agy-cli-projects\backend\src\KmValidator.Infrastructure\bin\Debug\net8.0\KmValidator.Application.dll
+C:\Users\marcos.correa\projects\ps-projects\agy-cli-projects\backend\src\KmValidator.Infrastructure\bin\Debug\net8.0\KmValidator.Domain.dll
+C:\Users\marcos.correa\projects\ps-projects\agy-cli-projects\backend\src\KmValidator.Infrastructure\bin\Debug\net8.0\KmValidator.Domain.pdb
+C:\Users\marcos.correa\projects\ps-projects\agy-cli-projects\backend\src\KmValidator.Infrastructure\bin\Debug\net8.0\KmValidator.Application.pdb
+C:\Users\marcos.correa\projects\ps-projects\agy-cli-projects\backend\src\KmValidator.Infrastructure\obj\Debug\net8.0\KmValidator.Infrastructure.csproj.AssemblyReference.cache
+C:\Users\marcos.correa\projects\ps-projects\agy-cli-projects\backend\src\KmValidator.Infrastructure\obj\Debug\net8.0\KmValidator.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\marcos.correa\projects\ps-projects\agy-cli-projects\backend\src\KmValidator.Infrastructure\obj\Debug\net8.0\KmValidator.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\marcos.correa\projects\ps-projects\agy-cli-projects\backend\src\KmValidator.Infrastructure\obj\Debug\net8.0\KmValidator.Infrastructure.AssemblyInfo.cs
+C:\Users\marcos.correa\projects\ps-projects\agy-cli-projects\backend\src\KmValidator.Infrastructure\obj\Debug\net8.0\KmValidator.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\marcos.correa\projects\ps-projects\agy-cli-projects\backend\src\KmValidator.Infrastructure\obj\Debug\net8.0\KmValida.1C61A052.Up2Date
+C:\Users\marcos.correa\projects\ps-projects\agy-cli-projects\backend\src\KmValidator.Infrastructure\obj\Debug\net8.0\KmValidator.Infrastructure.dll
+C:\Users\marcos.correa\projects\ps-projects\agy-cli-projects\backend\src\KmValidator.Infrastructure\obj\Debug\net8.0\refint\KmValidator.Infrastructure.dll
+C:\Users\marcos.correa\projects\ps-projects\agy-cli-projects\backend\src\KmValidator.Infrastructure\obj\Debug\net8.0\KmValidator.Infrastructure.pdb
+C:\Users\marcos.correa\projects\ps-projects\agy-cli-projects\backend\src\KmValidator.Infrastructure\obj\Debug\net8.0\ref\KmValidator.Infrastructure.dll

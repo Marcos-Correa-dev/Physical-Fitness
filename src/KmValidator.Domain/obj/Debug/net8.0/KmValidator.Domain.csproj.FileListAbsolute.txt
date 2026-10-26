@@ -1,0 +1,11 @@
+C:\Users\marcos.correa\projects\ps-projects\agy-cli-projects\backend\src\KmValidator.Domain\bin\Debug\net8.0\KmValidator.Domain.deps.json
+C:\Users\marcos.correa\projects\ps-projects\agy-cli-projects\backend\src\KmValidator.Domain\bin\Debug\net8.0\KmValidator.Domain.dll
+C:\Users\marcos.correa\projects\ps-projects\agy-cli-projects\backend\src\KmValidator.Domain\bin\Debug\net8.0\KmValidator.Domain.pdb
+C:\Users\marcos.correa\projects\ps-projects\agy-cli-projects\backend\src\KmValidator.Domain\obj\Debug\net8.0\KmValidator.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\marcos.correa\projects\ps-projects\agy-cli-projects\backend\src\KmValidator.Domain\obj\Debug\net8.0\KmValidator.Domain.AssemblyInfoInputs.cache
+C:\Users\marcos.correa\projects\ps-projects\agy-cli-projects\backend\src\KmValidator.Domain\obj\Debug\net8.0\KmValidator.Domain.AssemblyInfo.cs
+C:\Users\marcos.correa\projects\ps-projects\agy-cli-projects\backend\src\KmValidator.Domain\obj\Debug\net8.0\KmValidator.Domain.csproj.CoreCompileInputs.cache
+C:\Users\marcos.correa\projects\ps-projects\agy-cli-projects\backend\src\KmValidator.Domain\obj\Debug\net8.0\KmValidator.Domain.dll
+C:\Users\marcos.correa\projects\ps-projects\agy-cli-projects\backend\src\KmValidator.Domain\obj\Debug\net8.0\refint\KmValidator.Domain.dll
+C:\Users\marcos.correa\projects\ps-projects\agy-cli-projects\backend\src\KmValidator.Domain\obj\Debug\net8.0\KmValidator.Domain.pdb
+C:\Users\marcos.correa\projects\ps-projects\agy-cli-projects\backend\src\KmValidator.Domain\obj\Debug\net8.0\ref\KmValidator.Domain.dll

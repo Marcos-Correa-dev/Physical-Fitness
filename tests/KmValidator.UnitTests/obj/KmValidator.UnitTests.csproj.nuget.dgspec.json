@@ -1,0 +1,215 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\marcos.correa\\projects\\ps-projects\\agy-cli-projects\\backend\\tests\\KmValidator.UnitTests\\KmValidator.UnitTests.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\marcos.correa\\projects\\ps-projects\\agy-cli-projects\\backend\\src\\KmValidator.Application\\KmValidator.Application.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\marcos.correa\\projects\\ps-projects\\agy-cli-projects\\backend\\src\\KmValidator.Application\\KmValidator.Application.csproj",
+        "projectName": "KmValidator.Application",
+        "projectPath": "C:\\Users\\marcos.correa\\projects\\ps-projects\\agy-cli-projects\\backend\\src\\KmValidator.Application\\KmValidator.Application.csproj",
+        "packagesPath": "C:\\Users\\marcos.correa\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\marcos.correa\\projects\\ps-projects\\agy-cli-projects\\backend\\src\\KmValidator.Application\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\marcos.correa\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "C:\\Users\\marcos.correa\\projects\\ps-projects\\agy-cli-projects\\backend\\src\\KmValidator.Domain\\KmValidator.Domain.csproj": {
+                "projectPath": "C:\\Users\\marcos.correa\\projects\\ps-projects\\agy-cli-projects\\backend\\src\\KmValidator.Domain\\KmValidator.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Users\\marcos.correa\\.dotnet\\sdk\\8.0.426/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\marcos.correa\\projects\\ps-projects\\agy-cli-projects\\backend\\src\\KmValidator.Domain\\KmValidator.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\marcos.correa\\projects\\ps-projects\\agy-cli-projects\\backend\\src\\KmValidator.Domain\\KmValidator.Domain.csproj",
+        "projectName": "KmValidator.Domain",
+        "projectPath": "C:\\Users\\marcos.correa\\projects\\ps-projects\\agy-cli-projects\\backend\\src\\KmValidator.Domain\\KmValidator.Domain.csproj",
+        "packagesPath": "C:\\Users\\marcos.correa\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\marcos.correa\\projects\\ps-projects\\agy-cli-projects\\backend\\src\\KmValidator.Domain\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\marcos.correa\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Users\\marcos.correa\\.dotnet\\sdk\\8.0.426/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\marcos.correa\\projects\\ps-projects\\agy-cli-projects\\backend\\tests\\KmValidator.UnitTests\\KmValidator.UnitTests.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\marcos.correa\\projects\\ps-projects\\agy-cli-projects\\backend\\tests\\KmValidator.UnitTests\\KmValidator.UnitTests.csproj",
+        "projectName": "KmValidator.UnitTests",
+        "projectPath": "C:\\Users\\marcos.correa\\projects\\ps-projects\\agy-cli-projects\\backend\\tests\\KmValidator.UnitTests\\KmValidator.UnitTests.csproj",
+        "packagesPath": "C:\\Users\\marcos.correa\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\marcos.correa\\projects\\ps-projects\\agy-cli-projects\\backend\\tests\\KmValidator.UnitTests\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\marcos.correa\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "C:\\Users\\marcos.correa\\projects\\ps-projects\\agy-cli-projects\\backend\\src\\KmValidator.Application\\KmValidator.Application.csproj": {
+                "projectPath": "C:\\Users\\marcos.correa\\projects\\ps-projects\\agy-cli-projects\\backend\\src\\KmValidator.Application\\KmValidator.Application.csproj"
+              },
+              "C:\\Users\\marcos.correa\\projects\\ps-projects\\agy-cli-projects\\backend\\src\\KmValidator.Domain\\KmValidator.Domain.csproj": {
+                "projectPath": "C:\\Users\\marcos.correa\\projects\\ps-projects\\agy-cli-projects\\backend\\src\\KmValidator.Domain\\KmValidator.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "FluentAssertions": {
+              "target": "Package",
+              "version": "[6.12.1, )"
+            },
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[17.8.0, )"
+            },
+            "coverlet.collector": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "xunit": {
+              "target": "Package",
+              "version": "[2.5.3, )"
+            },
+            "xunit.runner.visualstudio": {
+              "target": "Package",
+              "version": "[2.5.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Users\\marcos.correa\\.dotnet\\sdk\\8.0.426/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
