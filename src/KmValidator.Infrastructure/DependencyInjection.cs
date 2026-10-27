@@ -1,4 +1,5 @@
 using KmValidator.Application.Ports;
+using KmValidator.Application.Services;
 using KmValidator.Application.UseCases;
 using KmValidator.Domain.Ports;
 using KmValidator.Domain.Services.Validation;
@@ -42,6 +43,7 @@ public static class DependencyInjection
         services.AddScoped<IValidateActivityUseCase, ValidateActivityUseCase>();
         services.AddScoped<IGetDashboardMetricsUseCase, GetDashboardMetricsUseCase>();
         services.AddScoped<ISimulateSmartwatchSyncUseCase, SimulateSmartwatchSyncUseCase>();
+        services.AddSingleton<ActivityFileParserService>();
 
         return services;
     }

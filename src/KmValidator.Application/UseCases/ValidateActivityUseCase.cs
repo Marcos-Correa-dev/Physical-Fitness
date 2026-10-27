@@ -32,7 +32,7 @@ public class ValidateActivityUseCase : IValidateActivityUseCase
 
         var device = await _deviceRepository.GetByIdAsync(activity.DeviceId, cancellationToken);
 
-        // Re-executa as regras de validação
+        // Re-executa as regras de validação e atualiza o laudo em vigor
         await _validationService.ValidateActivityAsync(activity, cancellationToken);
 
         await _activityRepository.UpdateAsync(activity, cancellationToken);

@@ -9,3 +9,4 @@ C:\Users\marcos.correa\projects\ps-projects\agy-cli-projects\backend\src\KmValid
 C:\Users\marcos.correa\projects\ps-projects\agy-cli-projects\backend\src\KmValidator.Domain\obj\Debug\net8.0\refint\KmValidator.Domain.dll
 C:\Users\marcos.correa\projects\ps-projects\agy-cli-projects\backend\src\KmValidator.Domain\obj\Debug\net8.0\KmValidator.Domain.pdb
 C:\Users\marcos.correa\projects\ps-projects\agy-cli-projects\backend\src\KmValidator.Domain\obj\Debug\net8.0\ref\KmValidator.Domain.dll
+C:\Users\marcos.correa\projects\ps-projects\agy-cli-projects\backend\src\KmValidator.Domain\obj\Debug\net8.0\KmValidator.Domain.sourcelink.json

@@ -106,3 +106,4 @@ C:\Users\marcos.correa\projects\ps-projects\agy-cli-projects\backend\tests\KmVal
 C:\Users\marcos.correa\projects\ps-projects\agy-cli-projects\backend\tests\KmValidator.UnitTests\obj\Debug\net8.0\KmValidator.UnitTests.pdb
 C:\Users\marcos.correa\projects\ps-projects\agy-cli-projects\backend\tests\KmValidator.UnitTests\obj\Debug\net8.0\KmValidator.UnitTests.genruntimeconfig.cache
 C:\Users\marcos.correa\projects\ps-projects\agy-cli-projects\backend\tests\KmValidator.UnitTests\obj\Debug\net8.0\ref\KmValidator.UnitTests.dll
+C:\Users\marcos.correa\projects\ps-projects\agy-cli-projects\backend\tests\KmValidator.UnitTests\obj\Debug\net8.0\KmValidator.UnitTests.sourcelink.json

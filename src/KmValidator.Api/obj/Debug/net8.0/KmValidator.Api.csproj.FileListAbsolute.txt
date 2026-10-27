@@ -97,11 +97,6 @@ C:\Users\marcos.correa\projects\ps-projects\agy-cli-projects\backend\src\KmValid
 C:\Users\marcos.correa\projects\ps-projects\agy-cli-projects\backend\src\KmValidator.Api\obj\Debug\net8.0\KmValidator.Api.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\marcos.correa\projects\ps-projects\agy-cli-projects\backend\src\KmValidator.Api\obj\Debug\net8.0\staticwebassets.build.json
 C:\Users\marcos.correa\projects\ps-projects\agy-cli-projects\backend\src\KmValidator.Api\obj\Debug\net8.0\staticwebassets.development.json
-C:\Users\marcos.correa\projects\ps-projects\agy-cli-projects\backend\src\KmValidator.Api\obj\Debug\net8.0\staticwebassets\msbuild.KmValidator.Api.Microsoft.AspNetCore.StaticWebAssets.props
-C:\Users\marcos.correa\projects\ps-projects\agy-cli-projects\backend\src\KmValidator.Api\obj\Debug\net8.0\staticwebassets\msbuild.build.KmValidator.Api.props
-C:\Users\marcos.correa\projects\ps-projects\agy-cli-projects\backend\src\KmValidator.Api\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.KmValidator.Api.props
-C:\Users\marcos.correa\projects\ps-projects\agy-cli-projects\backend\src\KmValidator.Api\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.KmValidator.Api.props
-C:\Users\marcos.correa\projects\ps-projects\agy-cli-projects\backend\src\KmValidator.Api\obj\Debug\net8.0\staticwebassets.pack.json
 C:\Users\marcos.correa\projects\ps-projects\agy-cli-projects\backend\src\KmValidator.Api\obj\Debug\net8.0\scopedcss\bundle\KmValidator.Api.styles.css
 C:\Users\marcos.correa\projects\ps-projects\agy-cli-projects\backend\src\KmValidator.Api\obj\Debug\net8.0\KmValida.22EC5871.Up2Date
 C:\Users\marcos.correa\projects\ps-projects\agy-cli-projects\backend\src\KmValidator.Api\obj\Debug\net8.0\KmValidator.Api.dll
@@ -109,3 +104,9 @@ C:\Users\marcos.correa\projects\ps-projects\agy-cli-projects\backend\src\KmValid
 C:\Users\marcos.correa\projects\ps-projects\agy-cli-projects\backend\src\KmValidator.Api\obj\Debug\net8.0\KmValidator.Api.pdb
 C:\Users\marcos.correa\projects\ps-projects\agy-cli-projects\backend\src\KmValidator.Api\obj\Debug\net8.0\KmValidator.Api.genruntimeconfig.cache
 C:\Users\marcos.correa\projects\ps-projects\agy-cli-projects\backend\src\KmValidator.Api\obj\Debug\net8.0\ref\KmValidator.Api.dll
+C:\Users\marcos.correa\projects\ps-projects\agy-cli-projects\backend\src\KmValidator.Api\obj\Debug\net8.0\KmValidator.Api.sourcelink.json
+C:\Users\marcos.correa\projects\ps-projects\agy-cli-projects\backend\src\KmValidator.api\obj\Debug\net8.0\staticwebassets\msbuild.KmValidator.Api.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\marcos.correa\projects\ps-projects\agy-cli-projects\backend\src\KmValidator.api\obj\Debug\net8.0\staticwebassets\msbuild.build.KmValidator.Api.props
+C:\Users\marcos.correa\projects\ps-projects\agy-cli-projects\backend\src\KmValidator.api\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.KmValidator.Api.props
+C:\Users\marcos.correa\projects\ps-projects\agy-cli-projects\backend\src\KmValidator.api\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.KmValidator.Api.props
+C:\Users\marcos.correa\projects\ps-projects\agy-cli-projects\backend\src\KmValidator.api\obj\Debug\net8.0\staticwebassets.pack.json

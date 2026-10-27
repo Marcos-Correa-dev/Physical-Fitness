@@ -1,3 +1,5 @@
+using KmValidator.Application.Ports;
+using KmValidator.Infrastructure.Services;
 using KmValidator.Infrastructure;
 using KmValidator.Infrastructure.Persistence;
 
@@ -5,6 +7,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 // 1. Registra dependências da camada de infraestrutura, domínio e casos de uso (Hexagonal)
 builder.Services.AddInfrastructure(builder.Configuration);
+
+// 1.1 Cliente HTTP tipado e serviço de integração Google Fit / Health Connect
+builder.Services.AddHttpClient<IGoogleFitService, GoogleFitService>();
 
 // 2. Controladores e JSON
 builder.Services.AddControllers()

@@ -23,6 +23,15 @@ public class PhysicalActivityRepository : IPhysicalActivityRepository
             .FirstOrDefaultAsync(a => a.Id == id, cancellationToken);
     }
 
+    public async Task<PhysicalActivity?> GetByStartTimeAsync(DateTime startTimeUtc, CancellationToken cancellationToken = default)
+    {
+        return await _context.PhysicalActivities
+            .Include(a => a.RoutePoints)
+            .Include(a => a.Validation)
+                .ThenInclude(v => v!.Issues)
+            .FirstOrDefaultAsync(a => a.StartTime == startTimeUtc, cancellationToken);
+    }
+
     public async Task<IReadOnlyList<PhysicalActivity>> GetAllRecentAsync(int limit = 50, CancellationToken cancellationToken = default)
     {
         return await _context.PhysicalActivities
@@ -59,6 +68,12 @@ public class PhysicalActivityRepository : IPhysicalActivityRepository
     public Task DeleteAsync(PhysicalActivity activity, CancellationToken cancellationToken = default)
     {
         _context.PhysicalActivities.Remove(activity);
+        return Task.CompletedTask;
+    }
+
+    public Task RemoveValidationAsync(ActivityValidation validation, CancellationToken cancellationToken = default)
+    {
+        _context.ActivityValidations.Remove(validation);
         return Task.CompletedTask;
     }
 }

@@ -13,3 +13,4 @@ C:\Users\marcos.correa\projects\ps-projects\agy-cli-projects\backend\src\KmValid
 C:\Users\marcos.correa\projects\ps-projects\agy-cli-projects\backend\src\KmValidator.Application\obj\Debug\net8.0\refint\KmValidator.Application.dll
 C:\Users\marcos.correa\projects\ps-projects\agy-cli-projects\backend\src\KmValidator.Application\obj\Debug\net8.0\KmValidator.Application.pdb
 C:\Users\marcos.correa\projects\ps-projects\agy-cli-projects\backend\src\KmValidator.Application\obj\Debug\net8.0\ref\KmValidator.Application.dll
+C:\Users\marcos.correa\projects\ps-projects\agy-cli-projects\backend\src\KmValidator.Application\obj\Debug\net8.0\KmValidator.Application.sourcelink.json

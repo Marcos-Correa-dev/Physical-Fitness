@@ -1,6 +1,7 @@
 using KmValidator.Application.DTOs;
 using KmValidator.Application.Mappers;
 using KmValidator.Application.Ports;
+using KmValidator.Application.Services;
 using KmValidator.Domain.Ports;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,18 +15,71 @@ public class ActivitiesController : ControllerBase
     private readonly IPhysicalActivityRepository _activityRepository;
     private readonly IWearableDeviceRepository _deviceRepository;
     private readonly IValidateActivityUseCase _validateUseCase;
+    private readonly IIngestActivityUseCase _ingestUseCase;
+    private readonly ActivityFileParserService _fileParserService;
     private readonly IUnitOfWork _unitOfWork;
 
     public ActivitiesController(
         IPhysicalActivityRepository activityRepository,
         IWearableDeviceRepository deviceRepository,
         IValidateActivityUseCase validateUseCase,
+        IIngestActivityUseCase ingestUseCase,
+        ActivityFileParserService fileParserService,
         IUnitOfWork unitOfWork)
     {
         _activityRepository = activityRepository;
         _deviceRepository = deviceRepository;
         _validateUseCase = validateUseCase;
+        _ingestUseCase = ingestUseCase;
+        _fileParserService = fileParserService;
         _unitOfWork = unitOfWork;
+    }
+
+    /// <summary>
+    /// Importa arquivo de treino real exportado do Mi Fitness (Xiaomi) ou Samsung Health (.gpx ou .tcx).
+    /// </summary>
+    [HttpPost("import-file")]
+    [Consumes("multipart/form-data")]
+    [ProducesResponseType(typeof(ActivitySummaryDto), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<IActionResult> ImportActivityFile(
+        IFormFile file,
+        [FromForm] string? deviceName,
+        CancellationToken cancellationToken)
+    {
+        if (file == null || file.Length == 0)
+        {
+            return BadRequest(new { message = "Selecione um arquivo de treino válido (.gpx ou .tcx)." });
+        }
+
+        string extension = Path.GetExtension(file.FileName).ToLowerInvariant();
+        string device = string.IsNullOrWhiteSpace(deviceName) ? "Xiaomi Mi Band 10" : deviceName;
+
+        try
+        {
+            using var stream = file.OpenReadStream();
+            DeviceSyncTelemetryDto telemetry;
+
+            if (extension == ".gpx")
+            {
+                telemetry = _fileParserService.ParseGpx(stream, file.FileName, device);
+            }
+            else if (extension == ".tcx")
+            {
+                telemetry = _fileParserService.ParseTcx(stream, file.FileName, device);
+            }
+            else
+            {
+                return BadRequest(new { message = "Formato de arquivo não suportado. Por favor, exporte em .gpx ou .tcx pelo app Mi Fitness ou Samsung Health." });
+            }
+
+            var result = await _ingestUseCase.ExecuteAsync(telemetry, cancellationToken);
+            return Ok(result);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(new { message = $"Erro ao processar arquivo do relógio: {ex.Message}" });
+        }
     }
 
     /// <summary>

@@ -19,6 +19,16 @@ public class GpsDistanceHaversineRule : IActivityValidationRule
                 0.0));
         }
 
+        // Treino indoor de Esteira / Treadmill (distância medida pelo sensor inercial / acelerômetro do relógio)
+        if (activity.Title.Contains("Esteira", StringComparison.OrdinalIgnoreCase) ||
+            activity.Title.Contains("Treadmill", StringComparison.OrdinalIgnoreCase))
+        {
+            return Task.FromResult(ValidationRuleResult.Success(
+                RuleName,
+                $"Treino indoor em esteira rolante. Distância de {activity.ReportedDistanceKm:F2} km validada pelo sensor inercial do relógio.",
+                activity.ReportedDistanceKm));
+        }
+
         var points = activity.RoutePoints.OrderBy(p => p.SequenceOrder).ToList();
         if (points.Count < 2)
         {

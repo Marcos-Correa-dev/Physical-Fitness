@@ -55,6 +55,13 @@ public class IngestActivityUseCase : IIngestActivityUseCase
         }
         device.RecordSync();
 
+        // Verificar se a atividade já foi importada anteriormente para evitar duplicidade
+        var existingActivity = await _activityRepository.GetByStartTimeAsync(dto.StartTimeUtc, cancellationToken);
+        if (existingActivity != null)
+        {
+            return ActivityMapper.ToDto(existingActivity, device.DeviceName);
+        }
+
         // 3. Calcular calorias se não fornecidas
         int calories = dto.CaloriesBurned ?? CaloricExpenditure.Estimate(
             dto.ActivityType,

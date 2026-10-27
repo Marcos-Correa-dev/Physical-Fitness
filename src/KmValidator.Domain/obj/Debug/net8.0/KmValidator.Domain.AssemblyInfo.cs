@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("KmValidator.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+803d851bcd2fa674ccc0963d1f49ff60e41a4103")]
 [assembly: System.Reflection.AssemblyProductAttribute("KmValidator.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("KmValidator.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

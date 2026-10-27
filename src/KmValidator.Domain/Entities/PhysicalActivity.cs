@@ -75,6 +75,12 @@ public class PhysicalActivity
         _routePoints.Add(point);
     }
 
+    public void SetLocation(double latitude, double longitude)
+    {
+        _routePoints.Clear();
+        _routePoints.Add(new RoutePoint(Id, 1, latitude, longitude, 45.0, StartTime, 0.0, AverageHeartRateBpm));
+    }
+
     public void AddRoutePoints(IEnumerable<RoutePoint> points)
     {
         _routePoints.AddRange(points);
@@ -84,7 +90,22 @@ public class PhysicalActivity
     {
         ArgumentNullException.ThrowIfNull(validation);
 
-        Validation = validation;
+        if (Validation != null)
+        {
+            Validation.Update(
+                validation.Status,
+                validation.CalculatedGpsDistanceKm,
+                validation.DiscrepancyPercentage,
+                validation.MaxSpeedKmh,
+                validation.AveragePaceMinKm,
+                validation.SummaryNotes,
+                validation.Issues);
+        }
+        else
+        {
+            Validation = validation;
+        }
+
         Status = validation.Status;
         ValidatedDistanceKm = Math.Round(approvedKm, 3);
     }

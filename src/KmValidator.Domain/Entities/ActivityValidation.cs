@@ -53,4 +53,32 @@ public class ActivityValidation
             }
         }
     }
+
+    public void Update(
+        ValidationStatus status,
+        double calculatedGpsDistanceKm,
+        double discrepancyPercentage,
+        double maxSpeedKmh,
+        double averagePaceMinKm,
+        string summaryNotes,
+        IEnumerable<ValidationIssue>? issues = null)
+    {
+        Status = status;
+        CalculatedGpsDistanceKm = Math.Round(calculatedGpsDistanceKm, 3);
+        DiscrepancyPercentage = Math.Round(discrepancyPercentage, 2);
+        MaxSpeedKmh = Math.Round(maxSpeedKmh, 2);
+        AveragePaceMinKm = Math.Round(averagePaceMinKm, 2);
+        SummaryNotes = summaryNotes ?? string.Empty;
+        ValidatedAt = DateTime.UtcNow;
+
+        _issues.Clear();
+        if (issues != null)
+        {
+            foreach (var issue in issues)
+            {
+                issue.AttachValidation(Id);
+                _issues.Add(issue);
+            }
+        }
+    }
 }

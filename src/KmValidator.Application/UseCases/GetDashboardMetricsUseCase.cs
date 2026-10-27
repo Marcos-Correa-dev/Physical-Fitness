@@ -34,7 +34,9 @@ public class GetDashboardMetricsUseCase : IGetDashboardMetricsUseCase
             var dev = await _deviceRepository.GetByIdAsync(devId, cancellationToken);
             if (dev != null)
             {
-                deviceDict[devId] = $"{dev.Manufacturer} {dev.DeviceName}";
+                deviceDict[devId] = dev.DeviceName.StartsWith(dev.Manufacturer, StringComparison.OrdinalIgnoreCase)
+                    ? dev.DeviceName
+                    : $"{dev.Manufacturer} {dev.DeviceName}";
             }
         }
 

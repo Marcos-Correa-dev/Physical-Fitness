@@ -1,5 +1,7 @@
 using KmValidator.Application.DTOs;
+using KmValidator.Application.Mappers;
 using KmValidator.Application.Ports;
+using KmValidator.Application.Services;
 using KmValidator.Domain.Entities;
 using KmValidator.Domain.Ports;
 using Microsoft.AspNetCore.Mvc;
@@ -15,17 +17,57 @@ public class DevicesController : ControllerBase
     private readonly ISimulateSmartwatchSyncUseCase _simulateUseCase;
     private readonly IWearableDeviceRepository _deviceRepository;
     private readonly IAthleteRepository _athleteRepository;
+    private readonly IPhysicalActivityRepository _activityRepository;
+    private readonly ActivityFileParserService _fileParserService;
 
     public DevicesController(
         IIngestActivityUseCase ingestUseCase,
         ISimulateSmartwatchSyncUseCase simulateUseCase,
         IWearableDeviceRepository deviceRepository,
-        IAthleteRepository athleteRepository)
+        IAthleteRepository athleteRepository,
+        IPhysicalActivityRepository activityRepository,
+        ActivityFileParserService fileParserService)
     {
         _ingestUseCase = ingestUseCase;
         _simulateUseCase = simulateUseCase;
         _deviceRepository = deviceRepository;
         _athleteRepository = athleteRepository;
+        _activityRepository = activityRepository;
+        _fileParserService = fileParserService;
+    }
+
+    /// <summary>
+    /// Consulta o histórico de atividades registradas para o relógio conectado no banco de dados.
+    /// Puxa estritamente dados sincronizados do dispositivo via Bluetooth ou telemetria, SEM ler arquivos do computador/desktop.
+    /// </summary>
+    [HttpPost("sync-history")]
+    [ProducesResponseType(typeof(SyncHistoryResponseDto), StatusCodes.Status200OK)]
+    public async Task<IActionResult> SyncWorkoutHistory([FromBody] SyncHistoryRequestDto? request, CancellationToken cancellationToken)
+    {
+        string deviceName = string.IsNullOrWhiteSpace(request?.DeviceName) ? "Xiaomi Mi Band 10" : request.DeviceName;
+
+        var activities = await _activityRepository.GetAllRecentAsync(100, cancellationToken);
+        var dtos = new List<ActivitySummaryDto>();
+
+        foreach (var act in activities)
+        {
+            var device = await _deviceRepository.GetByIdAsync(act.DeviceId, cancellationToken);
+            dtos.Add(ActivityMapper.ToDto(act, device?.DeviceName ?? deviceName));
+        }
+
+        var response = new SyncHistoryResponseDto
+        {
+            TotalFound = dtos.Count,
+            SyncedCount = dtos.Count,
+            NewCount = 0,
+            AlreadyExistingCount = dtos.Count,
+            Activities = dtos,
+            Message = dtos.Count > 0
+                ? $"{dtos.Count} atividade(s) sincronizada(s) do dispositivo {deviceName}."
+                : $"Nenhuma atividade gravada ainda para o dispositivo {deviceName}."
+        };
+
+        return Ok(response);
     }
 
     /// <summary>
