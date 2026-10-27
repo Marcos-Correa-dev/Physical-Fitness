@@ -1,1 +1,52 @@
-﻿/src/KmValidator.Application/KmValidator.Application.csproj
+﻿git statu# ===================================================================
+# .gitignore para Projetos .NET / ASP.NET Core / C# / JetBrains Rider
+# ===================================================================
+
+# Binaries
+[Oo]bj/
+[Bb]in/
+
+# Pastas ocultas da IDE (Rider / Visual Studio)
+.idea/
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Arquivos de Build, logs e testes
+*.log
+TestResults/
+*.coverage
+*.coveragexml
+*.trx
+
+# Arquivos de SO
+.DS_Store
+Thumbs.db
+
+# Configurações do App (opcional se não quiser comitar secrets locais)
+appsettings.Development.json
+appsettings.Local.json
+secrets.json
+
+# Diretórios de publicação
+[Pp]ublish/
+[Oo]ut/
+
+# Banco de dados local (ex: SQLite) caso adicione no futuro
+*.db
+*.db-shm
+*.db-wal
+
+# Pastas de pacotes
+packages/
+*.nupkg
+
+# Node/Frontend (referenciado no SvelteKit nas configs de CORS)
+node_modules/
+dist/
+build/
+.env
+.env.*
+!.env.example
