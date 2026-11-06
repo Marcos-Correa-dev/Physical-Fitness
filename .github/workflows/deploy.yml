@@ -1,4 +1,4 @@
-name: Deploy Ultra-Low-Cost (S3 + ECS Fargate Spot)
+name: Deploy Backend (.NET 8 -> ECS Fargate Spot)
 
 on:
   push:
@@ -6,8 +6,6 @@ on:
 
 env:
   AWS_REGION: us-east-2
-  S3_BUCKET: ${{ secrets.S3_FRONTEND_BUCKET_NAME }}
-  CLOUDFRONT_DISTRIBUTION_ID: ${{ secrets.CLOUDFRONT_DIST_ID }}
   ECR_REPOSITORY: physical-fitness-backend
   ECS_CLUSTER: physical-fitness-cluster
   ECS_SERVICE: physical-fitness-backend-service
@@ -15,50 +13,6 @@ env:
   CONTAINER_NAME: physical-fitness-backend
 
 jobs:
-  # =========================================================================
-  # 1. FRONTEND: Build Estático SvelteKit -> Deploy no S3 + CloudFront (R$ 0)
-  # =========================================================================
-  deploy-frontend:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout do código
-        uses: actions/checkout@v4
-
-      - name: Configurar Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: 'npm'
-          cache-dependency-path: './frontend/package-lock.json'
-
-      - name: Instalar Dependências e Compilar Frontend
-        working-directory: ./frontend
-        env:
-          VITE_API_URL: /api/v1
-        run: |
-          npm ci
-          npm run build
-
-      - name: Configurar Credenciais AWS
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ env.AWS_REGION }}
-
-      - name: Sincronizar arquivos com o Bucket S3
-        run: |
-          aws s3 sync ./frontend/build s3://${{ env.S3_BUCKET }} --delete --cache-control "public, max-age=31536000, immutable" --exclude "index.html"
-          aws s3 cp ./frontend/build/index.html s3://${{ env.S3_BUCKET }}/index.html --cache-control "no-cache, no-store, must-revalidate"
-
-      - name: Invalidar Cache do CloudFront
-        if: env.CLOUDFRONT_DISTRIBUTION_ID != ''
-        run: |
-          aws cloudfront create-invalidation --distribution-id ${{ env.CLOUDFRONT_DISTRIBUTION_ID }} --paths "/*"
-
-  # =========================================================================
-  # 2. BACKEND: Build Docker -> Push no ECR -> Deploy no ECS Fargate Spot
-  # =========================================================================
   deploy-backend:
     runs-on: ubuntu-latest
     steps:
@@ -81,7 +35,6 @@ jobs:
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           IMAGE_TAG: ${{ github.sha }}
-        working-directory: ./backend
         run: |
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -t $ECR_REGISTRY/$ECR_REPOSITORY:latest .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
@@ -90,10 +43,12 @@ jobs:
 
       - name: Garantir Função ecsTaskExecutionRole
         run: |
-          if ! aws iam get-role --role-name ecsTaskExecutionRole 2>/dev/null; then
+          if ! aws iam get-role --role-name ecsTaskExecutionRole >/dev/null 2>&1; then
             echo "Criando ecsTaskExecutionRole..."
             aws iam create-role --role-name ecsTaskExecutionRole --assume-role-policy-document '{"Version":"2012-10-17","Statement":[{"Effect":"Allow","Principal":{"Service":"ecs-tasks.amazonaws.com"},"Action":"sts:AssumeRole"}]}'
             aws iam attach-role-policy --role-name ecsTaskExecutionRole --policy-arn arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy
+          else
+            echo "ecsTaskExecutionRole já existe."
           fi
 
       - name: Renderizar Nova Task Definition
@@ -110,7 +65,7 @@ jobs:
           TASK_DEF_ARN=$(aws ecs register-task-definition --cli-input-json file://${{ steps.task-def.outputs.task-definition }} --query "taskDefinition.taskDefinitionArn" --output text)
           echo "Task Definition registrada: $TASK_DEF_ARN"
 
-          # 2. Verifica se o serviço ECS já existe
+          # 2. Verifica se o serviço ECS já existe no cluster
           SERVICE_COUNT=$(aws ecs describe-services --cluster ${{ env.ECS_CLUSTER }} --services ${{ env.ECS_SERVICE }} --query "length(services[?status=='ACTIVE'])" --output text)
 
           if [ "$SERVICE_COUNT" -gt 0 ]; then
