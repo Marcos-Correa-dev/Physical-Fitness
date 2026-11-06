@@ -41,15 +41,14 @@ jobs:
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
           echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
 
-      - name: Garantir Função ecsTaskExecutionRole
+      - name: Configurar Permissões CloudWatch e Role ECS
         run: |
-          if ! aws iam get-role --role-name ecsTaskExecutionRole >/dev/null 2>&1; then
-            echo "Criando ecsTaskExecutionRole..."
-            aws iam create-role --role-name ecsTaskExecutionRole --assume-role-policy-document '{"Version":"2012-10-17","Statement":[{"Effect":"Allow","Principal":{"Service":"ecs-tasks.amazonaws.com"},"Action":"sts:AssumeRole"}]}'
-            aws iam attach-role-policy --role-name ecsTaskExecutionRole --policy-arn arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy
-          else
-            echo "ecsTaskExecutionRole já existe."
-          fi
+          # 1. Pré-cria o grupo de logs para o container
+          aws logs create-log-group --log-group-name /ecs/physical-fitness-backend 2>/dev/null || true
+
+          # 2. Garante as permissões de logs na role de execução
+          aws iam attach-role-policy --role-name ecsTaskExecutionRole --policy-arn arn:aws:iam::aws:policy/CloudWatchLogsFullAccess 2>/dev/null || true
+          aws iam attach-role-policy --role-name ecsTaskExecutionRole --policy-arn arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy 2>/dev/null || true
 
       - name: Renderizar Nova Task Definition
         id: task-def
@@ -59,39 +58,50 @@ jobs:
           container-name: ${{ env.CONTAINER_NAME }}
           image: ${{ steps.build-image.outputs.image }}
 
-      - name: Registrar e Atualizar/Criar Serviço no ECS Fargate Spot
+      - name: Registrar e Atualizar Serviço no ECS Fargate Spot
         run: |
           # 1. Registra a task definition atualizada
           TASK_DEF_ARN=$(aws ecs register-task-definition --cli-input-json file://${{ steps.task-def.outputs.task-definition }} --query "taskDefinition.taskDefinitionArn" --output text)
-          echo "Task Definition registrada: $TASK_DEF_ARN"
+          echo "Task Definition registrada com sucesso: $TASK_DEF_ARN"
 
-          # 2. Verifica se o serviço ECS já existe no cluster
-          SERVICE_COUNT=$(aws ecs describe-services --cluster ${{ env.ECS_CLUSTER }} --services ${{ env.ECS_SERVICE }} --query "length(services[?status=='ACTIVE'])" --output text)
+          # 2. Garante a regra da porta 5005 no Security Group
+          DEFAULT_VPC=$(aws ec2 describe-vpcs --filters "Name=isDefault,Values=true" --query "Vpcs[0].VpcId" --output text)
+          SG=$(aws ec2 describe-security-groups --filters "Name=vpc-id,Values=$DEFAULT_VPC" "Name=group-name,Values=default" --query "SecurityGroups[0].GroupId" --output text)
+          aws ec2 authorize-security-group-ingress --group-id $SG --protocol tcp --port 5005 --cidr 0.0.0.0/0 2>/dev/null || true
 
-          if [ "$SERVICE_COUNT" -gt 0 ]; then
-            echo "Atualizando serviço existente no ECS..."
-            aws ecs update-service \
-              --cluster ${{ env.ECS_CLUSTER }} \
-              --service ${{ env.ECS_SERVICE }} \
-              --task-definition $TASK_DEF_ARN \
-              --force-new-deployment
-          else
-            echo "Criando novo serviço ECS com FARGATE_SPOT (Custo mínimo)..."
-            DEFAULT_VPC=$(aws ec2 describe-vpcs --filters "Name=isDefault,Values=true" --query "Vpcs[0].VpcId" --output text)
-            SUBNETS=$(aws ec2 describe-subnets --filters "Name=vpc-id,Values=$DEFAULT_VPC" --query "Subnets[*].SubnetId" --output text | tr '\t' ',')
-            SG=$(aws ec2 describe-security-groups --filters "Name=vpc-id,Values=$DEFAULT_VPC" "Name=group-name,Values=default" --query "SecurityGroups[0].GroupId" --output text)
+          # 3. Atualiza o serviço no ECS
+          echo "Atualizando o serviço $ECS_SERVICE no cluster $ECS_CLUSTER..."
+          aws ecs update-service \
+            --cluster ${{ env.ECS_CLUSTER }} \
+            --service ${{ env.ECS_SERVICE }} \
+            --task-definition $TASK_DEF_ARN \
+            --desired-count 1 \
+            --force-new-deployment
 
-            # Libera a porta 5005 no security group para conexões da API
-            aws ec2 authorize-security-group-ingress --group-id $SG --protocol tcp --port 5005 --cidr 0.0.0.0/0 2>/dev/null || true
+          # 4. Monitora a inicialização da tarefa
+          echo "Monitorando a inicialização da aplicação..."
+          SUCCESS=0
+          for i in {1..20}; do
+            RUNNING=$(aws ecs describe-services --cluster ${{ env.ECS_CLUSTER }} --services ${{ env.ECS_SERVICE }} --query "services[0].runningCount" --output text)
+            echo "Tentativa $i/20: Tarefas ativas = $RUNNING"
 
-            aws ecs create-service \
-              --cluster ${{ env.ECS_CLUSTER }} \
-              --service-name ${{ env.ECS_SERVICE }} \
-              --task-definition $TASK_DEF_ARN \
-              --capacity-provider-strategy capacityProvider=FARGATE_SPOT,weight=1 \
-              --network-configuration "awsvpcConfiguration={subnets=[$SUBNETS],securityGroups=[$SG],assignPublicIp=ENABLED}" \
-              --desired-count 1
+            if [ "$RUNNING" -ge 1 ]; then
+              echo "✅ Backend em execução com sucesso no Fargate Spot!"
+              SUCCESS=1
+              break
+            fi
+
+            # Diagnóstico caso alguma tarefa tenha parado
+            STOPPED_TASKS=$(aws ecs list-tasks --cluster ${{ env.ECS_CLUSTER }} --desired-status STOPPED --query "taskArns[:1]" --output text 2>/dev/null || true)
+            if [ -n "$STOPPED_TASKS" ] && [ "$STOPPED_TASKS" != "None" ]; then
+              REASON=$(aws ecs describe-tasks --cluster ${{ env.ECS_CLUSTER }} --tasks $STOPPED_TASKS --query "tasks[0].stoppedReason" --output text 2>/dev/null || true)
+              CONTAINER_REASON=$(aws ecs describe-tasks --cluster ${{ env.ECS_CLUSTER }} --tasks $STOPPED_TASKS --query "tasks[0].containers[0].reason" --output text 2>/dev/null || true)
+              echo "ℹ️ Motivo de parada recente: $REASON ($CONTAINER_REASON)"
+            fi
+
+            sleep 15
+          done
+
+          if [ "$SUCCESS" -eq 0 ]; then
+            echo "⚠️ O serviço ainda está inicializando as instâncias Spot."
           fi
-
-          echo "Aguardando estabilidade do serviço..."
-          aws ecs wait services-stable --cluster ${{ env.ECS_CLUSTER }} --services ${{ env.ECS_SERVICE }}
