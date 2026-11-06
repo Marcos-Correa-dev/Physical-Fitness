@@ -1,0 +1,57 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{DDEB91E9-C9AC-4E81-88AA-580FE15362C7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KmValidator.Domain", "src\KmValidator.Domain\KmValidator.Domain.csproj", "{A1691BCC-5A88-4ACB-A83E-697B0FDDF0F9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KmValidator.Application", "src\KmValidator.Application\KmValidator.Application.csproj", "{02132743-CCDC-4BDB-969B-C322D8DC815A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KmValidator.Infrastructure", "src\KmValidator.Infrastructure\KmValidator.Infrastructure.csproj", "{431CE3CE-9BF7-4661-9B70-2DE701028D4E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KmValidator.Api", "src\KmValidator.Api\KmValidator.Api.csproj", "{A2CD499C-1A43-4C1E-BAE6-B45F08810F8A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{A8F3A6B7-4D04-4261-9548-54B3DAFD2105}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KmValidator.UnitTests", "tests\KmValidator.UnitTests\KmValidator.UnitTests.csproj", "{C7F87D34-AFE1-4F4E-B341-6DBA93AE684C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A1691BCC-5A88-4ACB-A83E-697B0FDDF0F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1691BCC-5A88-4ACB-A83E-697B0FDDF0F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1691BCC-5A88-4ACB-A83E-697B0FDDF0F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1691BCC-5A88-4ACB-A83E-697B0FDDF0F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02132743-CCDC-4BDB-969B-C322D8DC815A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02132743-CCDC-4BDB-969B-C322D8DC815A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02132743-CCDC-4BDB-969B-C322D8DC815A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02132743-CCDC-4BDB-969B-C322D8DC815A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{431CE3CE-9BF7-4661-9B70-2DE701028D4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{431CE3CE-9BF7-4661-9B70-2DE701028D4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{431CE3CE-9BF7-4661-9B70-2DE701028D4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{431CE3CE-9BF7-4661-9B70-2DE701028D4E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2CD499C-1A43-4C1E-BAE6-B45F08810F8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2CD499C-1A43-4C1E-BAE6-B45F08810F8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2CD499C-1A43-4C1E-BAE6-B45F08810F8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2CD499C-1A43-4C1E-BAE6-B45F08810F8A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7F87D34-AFE1-4F4E-B341-6DBA93AE684C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7F87D34-AFE1-4F4E-B341-6DBA93AE684C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7F87D34-AFE1-4F4E-B341-6DBA93AE684C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7F87D34-AFE1-4F4E-B341-6DBA93AE684C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A1691BCC-5A88-4ACB-A83E-697B0FDDF0F9} = {DDEB91E9-C9AC-4E81-88AA-580FE15362C7}
+		{02132743-CCDC-4BDB-969B-C322D8DC815A} = {DDEB91E9-C9AC-4E81-88AA-580FE15362C7}
+		{431CE3CE-9BF7-4661-9B70-2DE701028D4E} = {DDEB91E9-C9AC-4E81-88AA-580FE15362C7}
+		{A2CD499C-1A43-4C1E-BAE6-B45F08810F8A} = {DDEB91E9-C9AC-4E81-88AA-580FE15362C7}
+		{C7F87D34-AFE1-4F4E-B341-6DBA93AE684C} = {A8F3A6B7-4D04-4261-9548-54B3DAFD2105}
+	EndGlobalSection
+EndGlobal
