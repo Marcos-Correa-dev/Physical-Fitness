@@ -20,9 +20,14 @@ COPY src/ .
 WORKDIR "/src/KmValidator.Api"
 RUN dotnet publish "KmValidator.Api.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
-# 2. Estágio Final de Runtime (Alpine Linux ~110MB)
+# 2. Estágio Final de Runtime (Alpine Linux com suporte a CultureInfo pt-BR)
 FROM mcr.microsoft.com/dotnet/aspnet:8.0-alpine AS final
 WORKDIR /app
+
+# Instala bibliotecas ICU no Alpine para suporte à cultura pt-BR
+USER root
+RUN apk add --no-cache icu-libs
+ENV DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=false
 
 # Execução com usuário sem privilégios root para segurança
 USER app
